@@ -6,6 +6,7 @@ const Home = ({ movies }) => {
 
     return (
         <div className="container">
+         
             {movies.map(movie => (
                 <Card key={movie.id} movie={movie} />
             ))}

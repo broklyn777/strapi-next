@@ -28,6 +28,9 @@ const CardStyled = styled.div`
     .body {
         padding: 20px;
         
+        img {
+            width: 400px;
+        }
         h3 {
             margin-bottom: 20px;
         }

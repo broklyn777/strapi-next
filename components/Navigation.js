@@ -5,31 +5,22 @@ import { useRouter } from 'next/router'
 import { useContext } from 'react'
 // import HeaderContext from '../contexts/HeaderContext'
 
-function Navigation() {
+function Navigation({navigation}) {
     const router = useRouter()
-    // const {menuItems} = useContext(HeaderContext)
+    // const {menuitems} = useContext(HeaderContext)
+    console.log(router);
 
     return (
         <NavigationStyled>
             <ul>
-             <li>
-                 <Link href="/about">
-                 <a className={router.pathname === '/about' ? 'active' : '' }>About</a>
-                 </Link>
-             </li>
-             <li>
-                 <Link href="/blog">Blog</Link>
-             </li>
-             <li>
-                 <Link href="/contact">Contact</Link>
-             </li>
-                {/* {menuItems.map(item => (
+         
+                {navigation.map(item => (
                     <li key={item.id}>
                         <Link href={item.slug}>
                             <a className={router.pathname === item.slug ? 'active' : '' }>{item.title}</a>
                         </Link>
                     </li>
-                ))} */}
+                ))}
             </ul>
         </NavigationStyled>
     )

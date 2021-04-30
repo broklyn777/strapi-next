@@ -1,24 +1,36 @@
 import styled from '@emotion/styled'
+import Link from 'next/link'
+// import Image from 'next/image'
 
 function Card ({ movie }) {
     const { API_URL } = process.env
-
+    
+  if(!movie.genre) {
+        movie.genre = {}
+        movie.genre.slug = 'uncategorised'
+  }
     return (
         <CardStyled>
+             {movie.poster && (
             <div className="poster">
                 <img src={API_URL + movie.poster.url} alt=""/>
             </div>
+             )}
             <div className="body">
                 <h3>{ movie.title }</h3>
-                <p>{ movie.Relese_date }</p>
+                {/* <p>{ movie.Relese_date }</p> */}
                 <p dangerouslySetInnerHTML={{ __html: movie.description }} />
+                <Link href="/movies/[genre]/[slug]" as={`/movies/${movie.genre.slug}/${movie.slug}`} >
+                <a>Mer om Filmen!</a>
+                </Link>
             </div>
         </CardStyled>
     )
 }
 
+
 const CardStyled = styled.div`
-    width: 400px;
+    width: 100%;
     border: 1px solid #cccccc;
     margin-top: 50px;
     border-radius: 20px;
@@ -39,10 +51,62 @@ const CardStyled = styled.div`
             color: #666666;
             line-height: 1.5;
         }
+         a {
+            display: inline-block;
+            margin: 20px 0;
+        }
     }
 `
 
 export default Card
+
+// import styled from '@emotion/styled'
+// import Link from 'next/link'
+// import Image from 'next/image'
+
+// import propTypes from 'prop-types'
+
+// function Card ({ movie, year }) {
+//     const { API_URL } = process.env
+
+//     if(!movie.genre) {
+//         movie.genre = {}
+//         movie.genre.slug = 'uncategorised'
+//     }
+
+//     return (
+//         <CardStyled>
+//             {movie.movie_poster && (
+//                 <div className="poster">
+//                     <Image src={API_URL + movie.poster.url} width={movie.poster.width} height={movie.poster.height} />
+//                 </div>
+//             )}
+//             <div className="body">
+//                 <h3>{ movie.movie_title } - {year}</h3>
+//                 <p dangerouslySetInnerHTML={{ __html: movie.description }} />
+
+//                 <Link href="/movies/[genre]/[slug]" as={`/movies/${movie.genre.slug}/${movie.slug}`}>
+//                     <a>More about this movie</a>
+//                 </Link>
+//             </div>
+//         </CardStyled>
+//     )
+// }
+
+// Card.propTypes = {
+//     movie: propTypes.oneOfType([
+//         propTypes.object,
+//         propTypes.array
+//     ]),
+//     year: propTypes.number
+// }
+
+// Card.defaultProps = {
+//     year: 1984
+// }
+
+
+
 
 
 // import styled from '@emotion/styled'

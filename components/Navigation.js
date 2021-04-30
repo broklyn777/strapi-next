@@ -13,7 +13,15 @@ function Navigation({navigation}) {
     return (
         <NavigationStyled>
             <ul>
-         
+         <li>
+             <Link href="/filter-movies">Filter</Link>
+         </li>
+         <li>
+             <Link href="/movies">Movies</Link>
+         </li>
+         <li>
+             <Link href="/einar">Einar</Link>
+         </li>
                 {navigation.map(item => (
                     <li key={item.id}>
                         <Link href={item.slug}>

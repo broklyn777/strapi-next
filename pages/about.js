@@ -1,5 +1,5 @@
-function About() {
-    return 'I am an about page'
+function Einar() {
+    return 'I am an About page'
 }
 
-export default About
+export default Einar

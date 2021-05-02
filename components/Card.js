@@ -18,9 +18,9 @@ function Card ({ movie, year }) {
             </div>
              )}
             <div className="body">
-                <h3>{ movie.title } -{year}</h3>
-                <p>{ movie.genre.title } Jeff</p>
-                {/* <p>{ movie.Relese_date }</p> */}
+                <h3>{ movie.title }</h3>
+                <p>{ movie.genre.title }</p>
+                <p>{ movie.Relese_date }</p>
                 <p dangerouslySetInnerHTML={{ __html: movie.description }} />
                 <Link href="/movies/[genre]/[slug]" as={`/movies/${movie.genre.slug}/${movie.slug}`} >
                 <a>Mer om Filmen!</a>
@@ -38,9 +38,9 @@ Card.propTypes = {
     year: propTypes.number
 }
 
-Card.defaultProps = {
-    year: 1984
-}
+// Card.defaultProps = {
+//     year: 1984
+// }
 
 
 const CardStyled = styled.div`

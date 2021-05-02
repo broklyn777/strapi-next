@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-// import Image from 'next/image'
-
-function Card ({ movie }) {
+import Image from 'next/image'
+import propTypes from 'prop-types'
+function Card ({ movie, year }) {
     const { API_URL } = process.env
     
   if(!movie.genre) {
@@ -13,11 +13,13 @@ function Card ({ movie }) {
         <CardStyled>
              {movie.poster && (
             <div className="poster">
-                <img src={API_URL + movie.poster.url} alt=""/>
+                <img src={API_URL + movie.poster.url} alt="" width={500} height={400}  />
+                 
             </div>
              )}
             <div className="body">
-                <h3>{ movie.title }</h3>
+                <h3>{ movie.title } -{year}</h3>
+                <p>{ movie.genre.title } Jeff</p>
                 {/* <p>{ movie.Relese_date }</p> */}
                 <p dangerouslySetInnerHTML={{ __html: movie.description }} />
                 <Link href="/movies/[genre]/[slug]" as={`/movies/${movie.genre.slug}/${movie.slug}`} >
@@ -26,6 +28,18 @@ function Card ({ movie }) {
             </div>
         </CardStyled>
     )
+}
+Card.propTypes = {
+    //propTypes.any    ---- is possible but oneOfType is bettter ???
+    movie: propTypes.oneOfType([
+        propTypes.object,
+        propTypes.array
+    ]),
+    year: propTypes.number
+}
+
+Card.defaultProps = {
+    year: 1984
 }
 
 
@@ -183,3 +197,74 @@ export default Card
 // `
 
 // export default Card
+
+
+
+
+
+
+
+
+
+// import styled from '@emotion/styled'
+// import Link from 'next/link'
+// // import Image from 'next/image'
+
+// function Card ({ movie }) {
+//     const { API_URL } = process.env
+    
+//   if(!movie.genre) {
+//         movie.genre = {}
+//         movie.genre.slug = 'uncategorised'
+//   }
+//     return (
+//         <CardStyled>
+//              {movie.poster && (
+//             <div className="poster">
+//                 <img src={API_URL + movie.poster.url} alt=""/>
+//             </div>
+//              )}
+//             <div className="body">
+//                 <h3>{ movie.title }</h3>
+//                 {/* <p>{ movie.Relese_date }</p> */}
+//                 <p dangerouslySetInnerHTML={{ __html: movie.description }} />
+//                 <Link href="/movies/[genre]/[slug]" as={`/movies/${movie.genre.slug}/${movie.slug}`} >
+//                 <a>Mer om Filmen!</a>
+//                 </Link>
+//             </div>
+//         </CardStyled>
+//     )
+// }
+
+
+// const CardStyled = styled.div`
+//     width: 100%;
+//     border: 1px solid #cccccc;
+//     margin-top: 50px;
+//     border-radius: 20px;
+//     overflow: hidden;
+//     box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+    
+//     .body {
+//         padding: 20px;
+        
+//         img {
+//             width: 400px;
+//         }
+//         h3 {
+//             margin-bottom: 20px;
+//         }
+        
+//         p {
+//             color: #666666;
+//             line-height: 1.5;
+//         }
+//          a {
+//             display: inline-block;
+//             margin: 20px 0;
+//         }
+//     }
+// `
+
+// export default Card
+

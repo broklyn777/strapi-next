@@ -15,7 +15,10 @@ function Navigation() {
     return (
         <NavigationStyled color={color} >
             <ul>
-        
+        <li>
+            <Link href="filter-movies"> FIlter
+            </Link>
+        </li>
                 {menuItems.map(item => (
                     <li key={item.id}>
                         <Link href={item.slug}>
